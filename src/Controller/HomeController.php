@@ -7,9 +7,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', methods: ['GET'])]
-    public function hello(): Response
+    #[Route('/', name: 'blog_index', methods: ['GET'])]
+    public function index(): Response
     {
-        return $this->render('home/home.html.twig');
+        return $this->render('base.html.twig');
+    }
+
+    #[Route('/article/{slug}', name: 'blog_post')]
+    public function show(string $slug): Response
+    {
+        return $this->render('blog/single.html.twig');
     }
 }
